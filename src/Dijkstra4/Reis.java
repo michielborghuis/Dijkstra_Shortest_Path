@@ -1,69 +1,68 @@
-package Dijkstra2;
+package Dijkstra4;
 
 import java.util.*;
 
-public class DPQ {
-    private int dist[];
+public class Reis {
+    private static int[] dist;
     private Set<Integer> settled;
     private PriorityQueue<Node> pq;
-    private int V; // Number of vertices
+    private int V; // Aantal punten
     List<List<Node>> adj;
 
-    public DPQ(int V) {
+    public Reis(int V){
         this.V = V;
         dist = new int[V];
-        settled = new HashSet<Integer>();
+        settled = new HashSet<>();
         pq = new PriorityQueue<Node>(V, new Node());
     }
 
-    // Function for Dijkstra's Algorithm
-    public void dijkstra(List<List<Node> > adj, int src)
-    {
+    public static int[] getDist(){
+        return dist;
+    }
+
+    //Functie voor Dijkstra's algoritme
+    public void dijkstra(List<List<Node>> adj, int src) {
         this.adj = adj;
-
-        for (int i = 0; i < V; i++)
+        for (int i = 0; i < V; i++) {
             dist[i] = Integer.MAX_VALUE;
+        }
 
-        // Add source node to the priority queue
+        //Voeg source node toe aan priority queue
         pq.add(new Node(src, 0));
 
-        // Distance to the source is 0
+        //Afstand tot eerste punt is 0
         dist[src] = 0;
         while (settled.size() != V) {
 
-            // remove the minimum distance node
-            // from the priority queue
+            //verwijder minimale afstand node uit de priority queue
             int u = pq.remove().node;
 
-            // adding the node whose distance is
-            // finalized
+            //voeg node toe waarvan de afstand bepaald is
             settled.add(u);
 
             e_Neighbours(u);
         }
     }
-
-    // Function to process all the neighbours
-    // of the passed node
-    private void e_Neighbours(int u)
-    {
+    //functie om alle neighbours van de vorig node te verwerken
+    private void e_Neighbours(int u){
         int edgeDistance = -1;
         int newDistance = -1;
 
-        // All the neighbors of v
-        for (int i = 0; i < adj.get(u).size(); i++) {
+        //Alle neighbours van v
+        for (int i = 0; i < adj.get(u).size(); i++){
             Node v = adj.get(u).get(i);
 
-            // If current node hasn't already been processed
+            //Als de huidige node nog niet verwerkt is
             if (!settled.contains(v.node)) {
                 edgeDistance = v.cost;
                 newDistance = dist[u] + edgeDistance;
 
-                // If new distance is cheaper in cost
-                if (newDistance < dist[v.node])
+                //Als de nieuwe cost kleiner is dan huidige
+                if (newDistance < dist[v.node]) {
                     dist[v.node] = newDistance;
+                }
 
-                // Add the current node to the queue
+                //Voeg huidige node to aan priority queue
                 pq.add(new Node(v.node, dist[v.node]));
             }
         }
@@ -101,14 +100,14 @@ public class DPQ {
 
 
         // Calculate the single source shortest path
-        DPQ dpq = new DPQ(V);
-        dpq.dijkstra(adj, source);
+        Reis reis = new Reis(V);
+        reis.dijkstra(adj, source);
 
         // Print the shortest path to all the nodes
         // from the source node
         System.out.println("The shorted path from node :");
-        for (int i = 0; i < dpq.dist.length; i++)
+        for (int i = 0; i < reis.dist.length; i++)
             System.out.println(source + " to " + i + " is "
-                    + dpq.dist[i]);
+                    + reis.dist[i]);
     }
 }
