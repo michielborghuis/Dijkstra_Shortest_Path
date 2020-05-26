@@ -1,4 +1,4 @@
 package Dijkstra;
 
-public class Main {
+public class Stap {
 }
