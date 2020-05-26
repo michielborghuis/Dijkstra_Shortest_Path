@@ -3,7 +3,7 @@ package Dijkstra4;
 import java.util.*;
 
 public class Reis {
-    private static int[] dist;
+    private int[] dist;
     private Set<Integer> settled;
     private PriorityQueue<Node> pq;
     private int V; // Aantal punten
@@ -16,7 +16,7 @@ public class Reis {
         pq = new PriorityQueue<Node>(V, new Node());
     }
 
-    public static int[] getDist(){
+    public int[] getDist(){
         return dist;
     }
 
