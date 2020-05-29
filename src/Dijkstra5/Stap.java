@@ -1,19 +1,30 @@
 package Dijkstra5;
 
 public class Stap {
-    private String name;
-    private Class<?> cls;
+    private int name;
+    private int toName;
     private int distance;
     private int price;
     private int minutes;
+    private int cost;
 
-    public Stap(String name, Class<?> cls, int distance, int price, int minutes){
+    public Stap(){};
+
+    public Stap(int name, int toName, int distance, int price, int minutes){
         this.name = name;
-        this.cls = cls;
+        this.toName = toName;
         this.distance = distance;
         this.price = price;
         this.minutes = minutes;
     }
 
+    @Override
+    public int compare(Stap stap1, Stap stap2){
+        if (stap1.distance < stap2.distance)
+            return -1;
+        if (stap1.distance > stap2.distance)
+            return 1;
+        return 0;
+    }
 
 }
