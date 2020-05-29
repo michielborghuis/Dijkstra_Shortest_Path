@@ -12,7 +12,7 @@ public class StapTest {
     Stap s24 = new Stap(2, 10, 2, 20, "autoRit");
     Stap s35 = new Stap(3, 1, 1, 2, "autoRit");
     Stap s34 = new Stap(3, 2, 1, 4, "autoRit");
-    Stap s54 = new Stap(5, 5, 1, 10, "vliegReis");
+    Stap s54 = new Stap(5, 5, 1, 10, "treinRit");
 
 
 
