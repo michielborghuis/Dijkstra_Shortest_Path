@@ -29,8 +29,11 @@ public class DPQ {
 
         // Distance to the source is 0
         dist[src] = 0;
+        System.out.println(settled.size());
+        System.out.println(pq);
         while (settled.size() != V) {
-
+            System.out.println(settled.size());
+            System.out.println(pq);
             // remove the minimum distance node
             // from the priority queue
             int u = pq.remove().node;
@@ -53,7 +56,7 @@ public class DPQ {
         // All the neighbors of v
         for (int i = 0; i < adj.get(u).size(); i++) {
             Node v = adj.get(u).get(i);
-
+            System.out.println(v);
             // If current node hasn't already been processed
             if (!settled.contains(v.node)) {
                 edgeDistance = v.cost;

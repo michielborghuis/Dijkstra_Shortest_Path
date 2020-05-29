@@ -38,9 +38,11 @@ public class Reis {
         dist[src] = 0;
         //!!!
         System.out.println(settled.size());
+        System.out.println(pq);
         while (settled.size() != V) {
             //!!!
             System.out.println(settled.size());
+            System.out.println(pq);
             //verwijder minimale afstand node uit de priority queue
             int u = pq.remove().getName();
             System.out.println(u);
@@ -59,7 +61,8 @@ public class Reis {
         //Alle neighbours van v
         for (int i = 0; i < adj.get(u).size(); i++){
             Stap v = adj.get(u).get(i);
-
+            //!!!
+            System.out.println(v);
             //Als de huidige node nog niet verwerkt is
             if (!settled.contains(v.getName())) {
                 edgeDistance = v.getDistance();
@@ -71,7 +74,7 @@ public class Reis {
                 }
 
                 //Voeg huidige node to aan priority queue
-                pq.add(new Stap(v.getName(), dist[v.getName()], 2, 2, "autoRit"));
+                pq.add(new Stap(v.getName(), dist[v.getName()], 0, 0, "autoRit"));
             }
         }
     }
