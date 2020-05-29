@@ -1,8 +1,10 @@
 package Dijkstra5;
 
-public class Stap {
+
+import java.util.Comparator;
+
+class Stap implements Comparator<Stap> {
     private int name;
-    private int toName;
     private int distance;
     private int price;
     private int minutes;
@@ -10,21 +12,31 @@ public class Stap {
 
     public Stap(){};
 
-    public Stap(int name, int toName, int distance, int price, int minutes){
+    public Stap(int name, int distance, int price, int minutes, String soortReis){
         this.name = name;
-        this.toName = toName;
         this.distance = distance;
         this.price = price;
         this.minutes = minutes;
+        if (soortReis.equals("vliegReis")){cost = price;}
+        else if (soortReis.equals("autoRit")){cost = distance;}
+        else if (soortReis.equals("treinRit")){cost = minutes;}
     }
 
+    public int getName(){return name;}
+
+    public int getDistance(){return distance;}
+
+    public int getPrice(){return price;}
+
+    public int getMinutes(){return minutes;}
+
     @Override
-    public int compare(Stap stap1, Stap stap2){
-        if (stap1.distance < stap2.distance)
+    public int compare(Stap stap1, Stap stap2)
+    {
+        if (stap1.cost < stap2.cost)
             return -1;
-        if (stap1.distance > stap2.distance)
+        if (stap1.cost > stap2.cost)
             return 1;
         return 0;
     }
-
 }

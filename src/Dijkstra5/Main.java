@@ -7,14 +7,14 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args){
-        Stap s01 = new Stap(0, 1, 10, 2, 20);
-        Stap s02 = new Stap(0, 2, 15, 3, 30);
-        Stap s13 = new Stap(1, 3, 12, 2, 24);
-        Stap s15 = new Stap(1, 5, 15, 3, 30);
-        Stap s24 = new Stap(2, 4, 10, 2, 20);
-        Stap s35 = new Stap(3, 5, 1, 1, 2);
-        Stap s34 = new Stap(3, 4, 2, 1, 4);
-        Stap s54 = new Stap(5, 4, 5, 1, 10);
+        Stap s01 = new Stap(0, 10, 2, 20, "autoRit");
+        Stap s02 = new Stap(0, 15, 3, 30, "autoRit");
+        Stap s13 = new Stap(1, 12, 2, 24, "autoRit");
+        Stap s15 = new Stap(1, 15, 3, 30, "autoRit");
+        Stap s24 = new Stap(2, 10, 2, 20, "autoRit");
+        Stap s35 = new Stap(3, 1, 1, 2, "autoRit");
+        Stap s34 = new Stap(3, 2, 1, 4, "autoRit");
+        Stap s54 = new Stap(5, 5, 1, 10, "autoRit");
 
         List<List<Stap>> adj = new ArrayList<List<Stap>>();
         for (int i = 0; i < 6; i++) {
@@ -37,10 +37,12 @@ public class Main {
 
         ArrayList<Integer> unsettled = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5));
 
-        Reis r1 = new Reis(adj, unsettled, "Autorit");
+        Reis r1 = new Reis(adj, "autoRit");
+        System.out.println(r1.getSoortReis());
+        System.out.println(r1.getV());
 
-
-
-
+        r1.dijkstra(0);
+        for (int i = 0; i < r1.getDist().length; i++)
+            System.out.println(0 + " to " + i + " is " + r1.getDist()[i]);
     }
 }
